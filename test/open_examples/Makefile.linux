@@ -3,7 +3,7 @@
 ###########################################################################
 
 #Variables CM_ROOT and CMC may be set by the user.
-CM_ROOT ?= ../..
+CM_ROOT ?= ../../../../CM_ALL/cmc/
 CMC ?= $(CM_ROOT)/compiler/bin/cmc
 APP_NAME_NO_STRIP:= $(shell pwd | awk -F '/' '{print $$NF}' )
 APP_NAME := $(strip $(APP_NAME_NO_STRIP))
@@ -39,7 +39,7 @@ HW_X64_APP_OBJS := $(HW_APP_SOURCES:.cpp=.$(HW_X64_ID).o)
 
 hw_x64: $(HW_X64_APP) $(HW_X64_ISA)
 $(HW_X64_APP): $(HW_X64_APP_OBJS)
-	$(CXX) $^ $(HW_LDFLAGS) -rdynamic $(CM_ROOT)/runtime/lib/x64/igfxcmrt64.so -o $@
+	$(CXX) $^ $(HW_LDFLAGS) -rdynamic $(CM_ROOT)/runtime/lib/x64/libigfxcmrt.so -o $@
 $(HW_X64_APP_OBJS): %.$(HW_X64_ID).o: %.cpp
 	$(CXX) $< $(HW_CXXFLAGS) -o $@
 
